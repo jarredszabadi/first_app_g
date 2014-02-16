@@ -1,0 +1,27 @@
+<h1>Listing workout_sessions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workout_sessions.each do |workout_session| %>
+      <tr>
+        <td><%= workout_session.user_id %></td>
+        <td><%= link_to 'Show', workout_session %></td>
+        <td><%= link_to 'Edit', edit_workout_session_path(workout_session) %></td>
+        <td><%= link_to 'Destroy', workout_session, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Workout session', new_workout_session_path %>

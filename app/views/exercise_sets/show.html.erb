@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Device:</strong>
+  <%= @exercise_set.device_id %>
+</p>
+
+<p>
+  <strong>Reps:</strong>
+  <%= @exercise_set.reps %>
+</p>
+
+<p>
+  <strong>Mass:</strong>
+  <%= @exercise_set.mass %>
+</p>
+
+<p>
+  <strong>Ave distance:</strong>
+  <%= @exercise_set.ave_distance %>
+</p>
+
+<p>
+  <strong>Ave time:</strong>
+  <%= @exercise_set.ave_time %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @exercise_set.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_exercise_set_path(@exercise_set) %> |
+<%= link_to 'Back', exercise_sets_path %>

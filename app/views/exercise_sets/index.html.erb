@@ -1,0 +1,37 @@
+<h1>Listing exercise_sets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Device</th>
+      <th>Reps</th>
+      <th>Mass</th>
+      <th>Ave distance</th>
+      <th>Ave time</th>
+      <th>User</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exercise_sets.each do |exercise_set| %>
+      <tr>
+        <td><%= exercise_set.device_id %></td>
+        <td><%= exercise_set.reps %></td>
+        <td><%= exercise_set.mass %></td>
+        <td><%= exercise_set.ave_distance %></td>
+        <td><%= exercise_set.ave_time %></td>
+        <td><%= exercise_set.user_id %></td>
+        <td><%= link_to 'Show', exercise_set %></td>
+        <td><%= link_to 'Edit', edit_exercise_set_path(exercise_set) %></td>
+        <td><%= link_to 'Destroy', exercise_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Exercise set', new_exercise_set_path %>
