@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
 	before_save { self.email = email.downcase }
 	before_create :create_remember_token
+	before_save :generate_auth_token!
 	#before_save { email.downcase! }
 
-	#attr_accessor :name, :email
+	#attr_accessor :name, :email, :password_confirmation, :password
 	#strong parameter whitelisting 
 		#http://edgeapi.rubyonrails.org/classes/ActionController/StrongParameters.html
 		#http://www.sitepoint.com/rails-4-quick-look-strong-parameters/	
@@ -31,6 +32,7 @@ class User < ActiveRecord::Base
 	#this adds :password and :password_confirmation to the User Model
     has_secure_password
 	has_many :microposts
+	has_many :workout_sessions
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
@@ -40,9 +42,18 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def generate_auth_token!()
+  	#http://railscasts.com/episodes/274-remember-me-reset-password
+	  	begin
+	  		self.auth_token = SecureRandom.hex
+	  	end while self.class.exists?(auth_token: auth_token)
+	end
+
   private
 
     def create_remember_token
       self.remember_token = User.encrypt(User.new_remember_token)
     end
+
+    
 end

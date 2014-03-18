@@ -1,11 +1,23 @@
 FirstApp::Application.routes.draw do
-  resources :equipment
 
-  resources :workout_sessions
 
-  resources :exercise_sets
 
-  resources :exercises
+
+
+namespace :api, defaults: {format: 'json'} do
+  namespace :v1 do
+    resources :equipment
+    resources :workout_sessions
+    resources :exercise_sets
+    resources :exercises
+    resources :sessions, only: [:new, :create, :destroy]
+    resources :microposts
+    resources :users
+  end
+end
+
+
+
 
   get "users/new"
 
@@ -19,7 +31,10 @@ FirstApp::Application.routes.draw do
 
 
 
-
+  resources :equipment
+  resources :workout_sessions
+  resources :exercise_sets
+  resources :exercises
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts
   resources :users
